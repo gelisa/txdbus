@@ -4,12 +4,16 @@ TxDBus
 Tom Cocagne <tom.cocagne@gmail.com>
 v1.0, July 2012
 
+Pontus Karlsson <pontuscarlsson@live.se>,
+?, May 2015
+
 Introduction
 ------------
 
 TxDBus is a native Python implementation of the
 [DBus protocol](http://dbus.freedesktop.org/doc/dbus-specification.html)
-for the [Twisted](http://twistedmatrix.com/trac/) networking framework.
+for the [Twisted](http://twistedmatrix.com/trac/) networking framework
+and the asyncio stdlib framework.
 
 In addition to a [Tutorial](http://packages.python.org/txdbus), and collection
 of [Examples](https://github.com/cocagne/txdbus/tree/master/doc/tutorial_examples),
@@ -18,14 +22,17 @@ the documentation for this project also includes
 
 *License*: [MIT](http://www.opensource.org/licenses/mit-license.php)
 
-Usage Example
+Usage Examples
 -------------
+
+Twisted
+~~~~~~~
 
 ```python
 #!/usr/bin/env python
 
 from twisted.internet import reactor, defer
-from txdbus import error, client
+from txdbus.tx import error, client
 
 @defer.inlineCallbacks
 def show_desktop_notification():
@@ -52,3 +59,38 @@ reactor.callWhenRunning(show_desktop_notification)
 reactor.run()
 ```
 
+asyncio (Python 3)
+~~~~~~~~~~~~~~~~~
+```python
+#!/usr/bin/env python3
+
+import asyncio
+from txdbus.aio import error, client
+
+loop = asyncio.get_event_loop()
+
+@asyncio.coroutine
+def show_desktop_notification():
+    '''
+    Displays "Hello World!" in a desktop notification window for 3 seconds
+    '''
+
+    con = yield from client.connect(loop, 'session')
+
+    notifier = yield from con.getRemoteObject('org.freedesktop.Notifications',
+                                              '/org/freedesktop/Notifications')
+
+    nid = yield from notifier.callRemote('Notify',
+                                         'Example Application',
+                                         0,
+                                         '',
+                                         'Tx DBus Example',
+                                         'Hello World!',
+                                         [], dict(),
+                                         3000)
+
+    loop.stop()
+
+loop.run_until_complete(show_desktop_notification())
+loop.close()
+```
