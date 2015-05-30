@@ -360,7 +360,10 @@ def delay(arg):
     return d
 
 def get_username():
-    uname = os.environ.get('USERNAME', None)
+    uname = getpass.getuser()
+
+    if uname is None:
+        uname = os.environ.get('USERNAME', None)
         
     if uname is None:
         uname = os.environ.get('LOGNAME', None)
@@ -537,7 +540,7 @@ class AuthTestProtocol(protocol.Protocol):
 
     def test_cancel(self):
         d = self.failOnExit()    
-        
+
         self.send('AUTH DBUS_COOKIE_SHA1 '+ binascii.hexlify(get_username()))
 
         def recv2(msg):
