@@ -4,10 +4,12 @@ DBus objects
 
 @author: Tom Cocagne
 """
+
 import inspect
 import weakref
 
 from twisted.internet import defer
+
 from zope.interface import Interface, implementer
 
 from txdbus import interface, error, marshal, message, introspection

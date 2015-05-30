@@ -3,7 +3,9 @@ Provides support for DBus introspection
 
 @author: Tom Cocagne
 """
+
 from six.moves import cStringIO
+
 import xml.sax
 import xml.sax.handler
 

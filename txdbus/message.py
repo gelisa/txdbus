@@ -3,6 +3,7 @@ Module to represent DBus Messages
 
 @author: Tom Cocagne
 """
+
 from txdbus import marshal, error
 
 

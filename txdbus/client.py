@@ -7,9 +7,6 @@ over the DBus bus.
 @author: Tom Cocagne
 """
 
-import os
-import sys
-
 from twisted.internet import reactor, defer
 from twisted.internet.protocol import Factory
 from twisted.internet.error import ConnectError

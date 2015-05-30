@@ -11,10 +11,10 @@ import getpass
 import hashlib
 import binascii
 
-from   zope.interface import Interface, implementer
+from zope.interface import Interface, implementer
 
-from   txdbus.protocol import IDBusAuthenticator
-from   txdbus.error    import DBusAuthenticationFailed
+from txdbus.protocol import IDBusAuthenticator
+from txdbus.error import DBusAuthenticationFailed
 
 from twisted.python import log
 

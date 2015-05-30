@@ -3,13 +3,14 @@ This module implements the wire-level DBus protocol.
 
 @author: Tom Cocagne
 """
+
 import struct
 import os.path
 
-from   zope.interface import Interface
+from zope.interface import Interface
 
-from   twisted.internet import protocol, defer, error
-from   twisted.python import log
+from twisted.internet import protocol, defer, error
+from twisted.python import log
 
 from txdbus import message, error
 

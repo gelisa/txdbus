@@ -4,7 +4,9 @@ to interested connections.
 
 @author: Tom Cocagne
 """
+
 import six
+
 from twisted.python import log
 
 # XXX Replace this simple, inefficient implementation with something a bit smarter

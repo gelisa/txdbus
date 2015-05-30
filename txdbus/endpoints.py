@@ -3,6 +3,7 @@ Endpoint creation from DBus address strings
 
 @author: Tom Cocagne
 """
+
 import os
 
 from twisted.internet.endpoints import UNIXClientEndpoint, TCP4ClientEndpoint
