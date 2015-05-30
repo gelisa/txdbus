@@ -82,7 +82,7 @@ def generateIntrospectionXML( objectPath, ifaceList ):
 def getInterfacesFromXML( xmlStr, replaceKnownInterfaces = False ):
     """
     Parses the supplied Introspection XML string and returns a list of
-    L{interface.DBusInerface} instances representing the XML interface
+    L{interface.DBusInterface} instances representing the XML interface
     definitions.
 
     @type replaceKnownInterfaces: C{bool}
@@ -90,7 +90,7 @@ def getInterfacesFromXML( xmlStr, replaceKnownInterfaces = False ):
                                    will be replaced by the contents of the
                                    interfaces defined within the XML string
 
-    @rtype: C{list} of L{interface.DBusInerface}
+    @rtype: C{list} of L{interface.DBusInterface}
     """
     handler = IntrospectionHandler( replaceKnownInterfaces )
 

@@ -10,9 +10,9 @@ import os.path
 from zope.interface import Interface
 
 from twisted.internet import protocol, defer, error
-from twisted.python import log
 
 from txdbus import message, error
+from txdbus.log import logger
 
 _is_linux = False
 
@@ -178,7 +178,7 @@ class BasicDBusProtocol(protocol.Protocol):
                             if self._buffer:
                                 self.dataReceived(b'')
                     except error.DBusAuthenticationFailed as e:
-                        log.msg('DBus Authentication failed: ' + str(e))
+                        logger.warn('DBus Authentication failed: ' + str(e))
                         self.transport.loseConnection()
             else:
                 if len(self._buffer) > self.MAX_AUTH_LENGTH:

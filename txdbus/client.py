@@ -15,6 +15,7 @@ import txdbus.protocol
 
 from txdbus import authentication, message, objects, introspection, router
 from txdbus import error
+from txdbus.log import useTwistedPythonLog
 
 
 # Constant return values for requestBusName
@@ -657,6 +658,8 @@ def connect( reactor,  busAddress='session' ):
     @returns: Deferred to L{DBusClientConnection} 
     """
     from txdbus import endpoints
+
+    useTwistedPythonLog()
 
     f = DBusClientFactory()
 

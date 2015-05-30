@@ -15,8 +15,7 @@ from zope.interface import Interface, implementer
 
 from txdbus.protocol import IDBusAuthenticator
 from txdbus.error import DBusAuthenticationFailed
-
-from twisted.python import log
+from txdbus.log import logger
 
 
 @implementer(IDBusAuthenticator)
@@ -108,7 +107,7 @@ class ClientAuthenticator (object):
         
 
     def _auth_AGREE_UNIX_FD(self, line):
-        log.msg('DBus Auth not implemented AGREE_UNIX_FD')
+        logger.info('DBus Auth not implemented AGREE_UNIX_FD')
         
     
     def _auth_DATA(self, line):
@@ -137,11 +136,11 @@ class ClientAuthenticator (object):
                 
                 self.sendAuthMessage(b'DATA ' + binascii.hexlify(reply))
             except Exception as e:
-                log.msg('DBUS Cookie authentication failed: ' + str(e))
+                logger.warn('DBUS Cookie authentication failed: ' + str(e))
                 self.sendAuthMessage(b'ERROR ' + str(e).encode())
 
     def _auth_ERROR(self, line):
-        log.msg('Authentication mechanism failed: ' + line)
+        logger.warn('Authentication mechanism failed: ' + line)
         self.authTryNextMethod()
 
     #--------------------------------------------------

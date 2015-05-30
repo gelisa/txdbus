@@ -7,7 +7,7 @@ to interested connections.
 
 import six
 
-from twisted.python import log
+from txdbus.log import logger
 
 # XXX Replace this simple, inefficient implementation with something a bit smarter
 
@@ -64,7 +64,7 @@ class Rule (object):
             # if we get here, we have a match
             self.callback( m )
         except:
-            log.err()
+            logger.exception()
 
 
 

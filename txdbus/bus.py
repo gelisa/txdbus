@@ -7,13 +7,12 @@ DBus Bus implementation
 import os
 import binascii
 
-from twisted.python import log
-
 import txdbus.protocol
 
 from txdbus import authentication, router, message, objects, client, error
 from txdbus import marshal
 from txdbus.interface import DBusInterface, Method, Signal
+from txdbus.log import logger
 
 
 class DError(Exception):
@@ -183,7 +182,7 @@ class Bus (objects.DBusObject):
             if p:
                 p.sendMessage( msg )
             else:
-                log.msg('Invalid bus name in msg.destination: ' + msg.destination)
+                logger.info('Invalid bus name in msg.destination: ' + msg.destination)
         else:
             self.router.routeMessage(msg)
             
